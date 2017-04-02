@@ -72,8 +72,9 @@ type LogWriter a = WriterT [Entry] IO a
 
 -- add a message to the log
 logMsg :: String -> LogWriter ()
-logMsg s = do t <- liftIO getClockTime
-              tell [Log t s]
+logMsg s = do 
+           t <- liftIO getClockTime
+           tell [Log t s]
 
 -- this handles one packet
 filterOne :: [Rule] -> Packet -> LogWriter (Maybe Packet)
